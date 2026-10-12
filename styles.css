@@ -1,0 +1,129 @@
+:root {
+  color-scheme: light dark;
+
+  /* Contrast checked 2026-10-12 (WCAG AA: 4.5:1 for text, 3:1 for large text).
+     Light: text/bg 15.75, muted/bg 5.91, accent/bg 6.24, muted/surface 5.49
+     Dark:  text/bg 14.43, muted/bg 6.96, accent/bg 7.37, muted/surface 6.19
+     Weakest pair in either theme: accent on accent-subtle, 5.38. All pass.
+     Recheck this block whenever a color token changes. */
+  --color-bg:          #fafbf9; /* page background */
+  --color-surface:     #f0f3ef; /* code blocks, asides, cards */
+  --color-border:      #d5dbd4; /* rules, input borders */
+  --color-text-muted:  #5b645c; /* dates, captions, metadata */
+  --color-text:        #1c211d; /* body copy and headings */
+
+  --color-accent:        #2d6a3e; /* links, focus rings */
+  --color-accent-hover:  #1f4d2c; /* links on hover: same hue, darker */
+  --color-accent-subtle: #e2ede3; /* unused so far: tinted backgrounds */
+  --color-on-accent:     #ffffff; /* unused so far: text on a solid accent */
+
+  /* Serif on purpose: long posts read better in a text serif. Charter ships
+     with macOS; the rest are fallbacks, ending in the generic keyword. */
+  --font-body: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+
+  /* Type scale: major third (x1.25), in rem. Each step is the previous x1.25. */
+  --text-sm:  0.8rem;
+  --text-base: 1rem;
+  --text-md:  1.25rem;
+  --text-lg:  1.563rem;
+  --text-xl:  1.953rem;
+  --text-2xl: 2.441rem;
+
+  /* Rhythm */
+  --line-height: 1.6;
+  --measure: 65ch;
+
+  /* Spacing scale, in rem (x16 = px): 4 8 12 16 24 32 48 64 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg:          #151916;
+    --color-surface:     #1e2420;
+    --color-border:      #343d36;
+    --color-text-muted:  #9aa59b;
+    --color-text:        #e4e9e3;
+
+    --color-accent:        #7fb38a;
+    --color-accent-hover:  #a3cbab;
+    --color-accent-subtle: #22352a;
+    --color-on-accent:     #10140f;
+  }
+}
+
+/* Padding and borders count inside an element's width. Needed before
+   layout work, otherwise width + padding overflows. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--line-height);
+}
+
+h1,
+h2 {
+  line-height: 1.2;
+  margin-block: var(--space-5) var(--space-3);
+}
+
+h1 { font-size: var(--text-xl); }
+h2 { font-size: var(--text-lg); }
+
+/* Tag list. Scoped to lists inside an <article>'s <footer>, so the nav's
+   list in <header> is untouched. The nav gets its own rules with layout. */
+article footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;        /* tags in a row */
+  flex-wrap: wrap;      /* wrap to a new line when the row is full */
+  gap: var(--space-2);
+}
+
+article footer li {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  background: var(--color-surface);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--space-1);
+}
+
+p {
+  margin-block: 0 var(--space-3);
+  max-width: var(--measure);
+
+}
+
+a {
+  color: var(--color-accent);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+time {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
