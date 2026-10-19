@@ -209,3 +209,9 @@ body > footer > p {
     margin: 0;
     font-size: var(--text-sm);
 }
+/* stacks when 40rem or narrower */
+@media (width <= 40rem) {
+    body > header {
+        display: block;
+    }
+}
