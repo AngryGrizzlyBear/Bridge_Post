@@ -1,4 +1,4 @@
-import { wordCount, readingMinutes} from "./readingtime.js";
+import { readingMinutes } from "./readingtime.js";
 
 const article = document.querySelector("article");
 const slot = document.querySelector("#reading-time");
